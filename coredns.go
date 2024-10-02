@@ -46,6 +46,7 @@ import (
 	_ "github.com/coredns/coredns/plugin/view"
 	_ "github.com/coredns/coredns/plugin/whoami"
 	// External Plugins
+	_ "github.com/bia3/coredns/coredns_blackhole"
 	_ "github.com/openshift/coredns-mdns"
 	// Core
 	"github.com/coredns/coredns/core/dnsserver"
@@ -98,6 +99,7 @@ var directives = []string{
 	"view",
 	"whoami",
 	// External Plugins
+	"blackhole",
 	"mdns",
 	// Core
 	"startup",
