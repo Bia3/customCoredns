@@ -50,11 +50,21 @@ import (
 	_ "github.com/openshift/coredns-mdns"
 	// Core
 	"github.com/coredns/coredns/core/dnsserver"
+	_ "github.com/coredns/coredns/core/plugin"
 	"github.com/coredns/coredns/coremain"
 )
 
+// Directives are registered in the order they should be
+// executed.
+//
+// Ordering is VERY important. Every plugin will
+// feel the effects of all other plugin below
+// (after) them during a request, but they must not
+// care what plugin above them are doing.
 var directives = []string{
-	// Plugins
+	"log",
+	"blackhole",
+	"mdns",
 	"acl",
 	"any",
 	"auto",
@@ -71,7 +81,6 @@ var directives = []string{
 	"dnstap",
 	"erratic",
 	"errors",
-	"forward",
 	"geoip",
 	"grpc",
 	"header",
@@ -79,7 +88,6 @@ var directives = []string{
 	"hosts",
 	"loadbalance",
 	"local",
-	"log",
 	"loop",
 	"metadata",
 	"minimal",
@@ -94,14 +102,11 @@ var directives = []string{
 	"template",
 	"timeouts",
 	"tls",
+	"forward",
+	"whoami",
 	"trace",
 	"tsig",
 	"view",
-	"whoami",
-	// External Plugins
-	"blackhole",
-	"mdns",
-	// Core
 	"startup",
 	"shutdown",
 }
