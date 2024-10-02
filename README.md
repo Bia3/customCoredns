@@ -10,7 +10,7 @@ buildGoModule rec {
     version = "0.0.1";
 
     src = ./.;
-    vendorHash = "sha256-v2IYZJw2XITksBnEAlMIFDaHbvffBFZlWhaYwl8PCMo=";
+    vendorHash = lib.fakeHash;
     
     meta = with lib; {
         description = "Coredns with plugins for nixos configurations";
